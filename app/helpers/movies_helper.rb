@@ -1,6 +1,6 @@
 module MoviesHelper
 
-  def formatted_total_gross(movie)
+  def total_gross(movie)
     if movie.flop?
       "Flop"
     else
