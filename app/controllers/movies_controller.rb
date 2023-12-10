@@ -14,10 +14,11 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
 
-    if @movie.update(movie_params)
+    if @movie.valid?
+      @movie.update(movie_params)
       redirect_to movie_path(format: :html)
     else
-      render :edit
+      format.html { render :edit, status: :unprocessable_entity }
     end
 
   end
@@ -29,10 +30,12 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
 
-    if @movie.save
-      redirect_to movie_url(@movie.id, format: :html)
-    else
-      render :new
+    respond_to do |format|
+      if @movie.save
+        redirect_to @movie, turbo_stream: :replace
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
