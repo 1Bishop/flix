@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: MyString
+  title: MyString
+  rating: MyString
+  total_gross: 9.99
+
+two:
+  movie: MyString
+  title: MyString
+  rating: MyString
+  total_gross: 9.99
