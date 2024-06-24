@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.released
   end
 
   def show
@@ -28,6 +28,12 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     @movie.save
     redirect_to @movie, notice: "Movie successfully created."
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect_to movies_url, notice: "Movie successfully deleted."
   end
 
   private
