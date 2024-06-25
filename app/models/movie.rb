@@ -8,6 +8,8 @@ class Movie < ApplicationRecord
     message: "must be a JPG or PNG image"
   }
 
+  validates :duration, numericality: { greater_than_or_equal_to: 0 }
+
   RATINGS = %w(G PG PG-13 R NC-17)
   validates :rating, inclusion: { in: RATINGS }
 
